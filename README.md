@@ -4,13 +4,14 @@ Windowsを前提とした、pyenv-win と Poetry を使う最小構成の Python
 
 ## セットアップ
 
-1) pyenv-win のインストール（未導入なら）
+### 1) pyenv-win のインストール（未導入なら）
+インストールコマンド
 
 ```powershell
 Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/pyenv-win/pyenv-win/master/pyenv-win/install-pyenv-win.ps1" -OutFile "./install-pyenv-win.ps1"; &"./install-pyenv-win.ps1"
 ```
 
-2) Python のインストールと切り替え（pyenv）
+### 2) Python のインストール（pyenv） バージョン切り替え可能
 
 - インストール可能なバージョン一覧の確認:
   ```powershell
@@ -25,7 +26,7 @@ Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/pyenv
   pyenv versions
   ```
 
-### pyenv: global と local の違い
+#### pyenv: global と local の違い
 
 - global: ユーザー全体のデフォルト設定。プロジェクト外で使う Python を切り替える。
   ```powershell
@@ -42,10 +43,10 @@ Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/pyenv
   pyenv versions   # インストール済み一覧（* が現在有効）
   ```
 
-3) Poetry のインストール（未導入なら）
+### 3) Poetry のインストール（未導入なら）
 
 - 公式手順: https://python-poetry.org/docs/#installing-with-the-official-installer
-- 
+- インストールコマンド
   ```powershell
   (Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | py -
   ```
@@ -55,14 +56,14 @@ Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/pyenv
   poetry -v
   ```
 
-4) 仮想環境の作成と依存インストール
+### 4) 仮想環境の作成と依存インストール
 
-- 仮想環境作成（`.venv/` を作る）と依存インストール（`pyproject.toml` を読む）:
+- 仮想環境作成（`.venv/` を作る）と依存インストール（`pyproject.toml` に基づく）
   ```powershell
   poetry install
   ```
 
-5) 動作確認
+### 5) 動作確認
 
 - テスト実行:
   ```powershell
@@ -129,5 +130,3 @@ python-starter/
 - インポート整形: `poetry run isort .`
 - テスト: `poetry run pytest`
 - スクリプト実行: `poetry run python your_script.py`
-
-必要十分な情報を残しつつ簡潔に整理しています。追加で説明が必要な箇所があれば教えてください。
