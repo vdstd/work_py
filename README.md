@@ -10,6 +10,16 @@ Windowsを前提とした、pyenv-win と Poetry を使う最小構成の Python
 ```powershell
 Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/pyenv-win/pyenv-win/master/pyenv-win/install-pyenv-win.ps1" -OutFile "./install-pyenv-win.ps1"; &"./install-pyenv-win.ps1"
 ```
+```powershell
+.\install-pyenv-win.ps1
+```
+```powershell
+$env:PYENV="$env:USERPROFILE\.pyenv\pyenv-win\"
+$env:PYENV_ROOT=$env:PYENV
+$env:PYENV_HOME=$env:PYENV
+$env:PATH="$env:USERPROFILE\.pyenv\pyenv-win\bin;$env:USERPROFILE\.pyenv\pyenv-win\shims;$env:PATH"
+```
+
 
 ### 2) Python のインストール（pyenv） バージョン切り替え可能
 
