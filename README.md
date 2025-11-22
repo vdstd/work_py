@@ -5,21 +5,22 @@ Windowsを前提とした、pyenv-win と Poetry を使う最小構成の Python
 ## セットアップ
 
 ### 1) pyenv-win のインストール（未導入なら）
-インストールコマンド
-
-```powershell
-Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/pyenv-win/pyenv-win/master/pyenv-win/install-pyenv-win.ps1" -OutFile "./install-pyenv-win.ps1"; &"./install-pyenv-win.ps1"
-```
-```powershell
-.\install-pyenv-win.ps1
-```
-```powershell
-$env:PYENV="$env:USERPROFILE\.pyenv\pyenv-win\"
-$env:PYENV_ROOT=$env:PYENV
-$env:PYENV_HOME=$env:PYENV
-$env:PATH="$env:USERPROFILE\.pyenv\pyenv-win\bin;$env:USERPROFILE\.pyenv\pyenv-win\shims;$env:PATH"
-```
-
+- インストールコマンド
+  ```powershell
+  Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/pyenv-win/pyenv-win/master/pyenv-win/install-pyenv-win.ps1" -OutFile "./install-pyenv-win.ps1"; &"./install-pyenv-win.ps1"
+  ```
+- work-py-main\\install-pyenv-win.ps1 を実行
+  ```powershell
+  .\install-pyenv-win.ps1
+  ```
+- 環境変数追加
+  ```powershell
+  $env:PYENV="$env:USERPROFILE\.pyenv\pyenv-win\"
+  $env:PYENV_ROOT=$env:PYENV
+  $env:PYENV_HOME=$env:PYENV
+  $env:PATH="$env:USERPROFILE\.pyenv\pyenv-win\bin;$env:USERPROFILE\.pyenv\pyenv-win\shims;$env:PATH"
+  ```
+環境変数を追加したので、ターミナルを開きなおす。
 
 ### 2) Python のインストール（pyenv） バージョン切り替え可能
 
@@ -58,14 +59,17 @@ $env:PATH="$env:USERPROFILE\.pyenv\pyenv-win\bin;$env:USERPROFILE\.pyenv\pyenv-w
 - 公式手順: https://python-poetry.org/docs/#installing-with-the-official-installer
 - インストールコマンド
   ```powershell
-  (Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | py -
+  (Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | python -
   ```
-- 環境変数 PATH に `%APPDATA%\Python\Scripts` を追加。
+- 環境変数追加
+  ```powershell
+  setx PATH "$env:APPDATA\Python\Scripts;$env:PATH"
+  ```
 - バージョン確認:
   ```powershell
   poetry -v
   ```
-
+環境変数を追加したので、ターミナルを開きなおす。
 ### 4) 仮想環境の作成と依存インストール
 
 - 仮想環境作成（`.venv/` を作る）と依存インストール（`pyproject.toml` に基づく）
